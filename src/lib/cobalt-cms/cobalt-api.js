@@ -8,7 +8,7 @@ export async function getCobaltPageByUrl(site, url) {
     console.log("Getting cobalt data from " + requestUrl)
     pageData = await cobaltRequest(requestUrl)
 
-    const cobaltData = buildCobaltDataFromPage(pageData, site, url);
+    const cobaltData = buildCobaltDataFromPage(pageData, site, url, null);
 
     return cobaltData;
 }

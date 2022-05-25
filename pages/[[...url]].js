@@ -1,11 +1,21 @@
 import Layout from "../src/components/Layout/Layout";
 import ArticlePage from "../src/components/Page/ArticlePage";
+import LandingPage from "../src/components/Page/LandingPage";
 import { getCobaltPageByUrl, getCobaltPreview } from "../src/lib/cobalt-cms/cobalt-api";
 
 export default function Page({cobaltData}){
-    const render = (
+    let render = null;
+    switch(cobaltData.object.data.sys.baseType){
+        case 'article':
+            render = <ArticlePage cobaltData={cobaltData}/>;
+            break;
+        case 'webpage':
+            render = <LandingPage cobaltData={cobaltData}/>;
+            break;
+    }
+    render = (
         <Layout cobaltData={cobaltData}>
-            <ArticlePage cobaltData={cobaltData}/>
+            {render}
         </Layout>
     )
     return render;
